@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лаб 5 перше завдання</title>
+    <style>
+      .yellow-block {
+        background-color: rgb(255, 255, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Лаб 5, 1 завдання <br />
+      Виконала: Закидальська Аміна, ІА-401
+    </h3>
+    <a href="#" onclick="loadLanguages()">Мови</a> |
+    <a href="#" onclick="loadStudents()">Студенти</a>
+
+    <div class="yellow-block" id="dataContainer"></div>
+
+    <script>
+      function loadLanguages() {
+        fetch("1.txt")
+          .then((response) => response.json())
+          .then((data) => displayData(data));
+      }
+
+      function loadStudents() {
+        fetch("2.txt")
+          .then((response) => response.json())
+          .then((data) => displayData(data));
+      }
+
+      function displayData(data) {
+        const dataContainer = document.getElementById("dataContainer");
+        dataContainer.innerHTML = "<ul>";
+        data.forEach((item) => {
+          dataContainer.innerHTML += `<li>${item}</li>`;
+        });
+        dataContainer.innerHTML += "</ul>";
+      }
+    </script>
+  </body>
+</html>
